@@ -8,6 +8,7 @@ library("lubridate")
 library("fasttime")
 
 ## Base url of the meters
+
 url_siel<- "http://64.206.121.30/setup/devicexml.cgi?ADDRESS=250&TYPE=DATA"
 
 url_growatt <- "http://64.206.121.31/setup/devicexml.cgi?ADDRESS=250&TYPE=DATA"
