@@ -53,14 +53,20 @@ ui <- dashboardPage(header, sideBar, body)
 ### The "Run once section"
 
 infile_lau <- "./data/laurita_data.csv"
-infile_siel <- "data/johnston_siel_data.csv"
+infile_siel <- "./data/johnston_siel_data.csv"
 infile_gro <- "./data/johnston_growatt_data.csv"
 
-#### Laurita calculations ####
-# some static calcs that don't need to be updated so often useful constants
-static_data <- read_csv(infile_lau)
-static_data <- static_data %>% mutate(date_time_est = fastPOSIXct(date_time_utc, tz = "America/New_York")) 
+###
 
+######################## SERVER CODE ########################
+
+server <- function(input, output, session) { 
+
+#### Laurita calculations ####
+  # some static calcs that don't need to be updated so often useful constants
+  static_data <- read_csv(infile_lau)
+  static_data <- static_data %>% mutate(date_time_est = fastPOSIXct(date_time_utc, tz = "America/New_York")) 
+  
 ## Future Michael: the following code will be difficult to reason about
 # what you're doing:
 # having added 'date_time_est' to static date above, 
@@ -68,35 +74,11 @@ static_data <- static_data %>% mutate(date_time_est = fastPOSIXct(date_time_utc,
 # by taking only values where the day == ceiling date of two days ago
 # aka "yesterday"  
 # ie test 'ceiling_date(Sys.time() - days(2), unit = "day")
-start_day_cum_kwh <- static_data %>% filter(day(date_time_est) == day(ceiling_date(Sys.time() - days(2), unit = "day"))) %>% select(cum_kwh) %>% summarise(last(cum_kwh)) %>% as.numeric()
-start_month_cum_kwh <- static_data %>% filter(date_time_est >= floor_date(Sys.time(), unit = "month")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
-start_year_cum_kwh <- static_data %>% filter(date_time_est >= floor_date(Sys.time(), unit = "year")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
-
-
-###
-#### Johnston calculations ####
-# some static calcs that don't need to be updated so often useful constants
-static_data_siel <- read_csv(infile_siel)
-static_data_gro <- read_csv(infile_gro)
-
-static_data_siel <- static_data_siel %>% mutate(date_time_est = fastPOSIXct(date_time_utc, tz = "America/New_York")) 
-
-static_data_gro <- static_data_gro %>% mutate(date_time_est = fastPOSIXct(date_time_utc, tz = "America/New_York")) 
-
-start_day_cum_kwh_john <- static_data_siel %>% filter(day(date_time_est) == day(ceiling_date(Sys.time() - days(2), unit = "day"))) %>% select(cum_kwh) %>% summarise(last(cum_kwh)) %>% as.numeric() +
-  static_data_gro %>% filter(day(date_time_est) == day(ceiling_date(Sys.time() - days(2), unit = "day"))) %>% select(cum_kwh) %>% summarise(last(cum_kwh)) %>% as.numeric()
-
-start_month_cum_kwh_john <- static_data_siel %>% filter(date_time_est >= floor_date(Sys.time(), unit = "month")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric() + 
-  static_data_gro %>% filter(date_time_est >= floor_date(Sys.time(), unit = "month")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
-
-start_year_cum_kwh_john <- static_data_siel %>% filter(date_time_est >= floor_date(Sys.time(), unit = "year")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric() + 
-  static_data_gro %>% filter(date_time_est >= floor_date(Sys.time(), unit = "year")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
-
-######################## SERVER CODE ########################
-
-server <- function(input, output, session) { 
-
-
+  start_day_cum_kwh <- static_data %>% filter(day(date_time_est) == day(ceiling_date(Sys.time() - days(2), unit = "day"))) %>% select(cum_kwh) %>% summarise(last(cum_kwh)) %>% as.numeric()
+  
+  start_month_cum_kwh <- static_data %>% filter(date_time_est >= floor_date(Sys.time(), unit = "month")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
+  
+  start_year_cum_kwh <- static_data %>% filter(date_time_est >= floor_date(Sys.time(), unit = "year")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
   
   # reactive calcs that will update often
   fileReaderData <- reactiveFileReader(
@@ -173,6 +155,23 @@ server <- function(input, output, session) {
     )
   })
   
+  #### Johnston calculations ####
+  # some static calcs that don't need to be updated so often useful constants
+  static_data_siel <- read_csv(infile_siel)
+  static_data_gro <- read_csv(infile_gro)
+
+  static_data_siel <- static_data_siel %>% mutate(date_time_est = fastPOSIXct(date_time_utc, tz = "America/New_York")) 
+    
+  static_data_gro <- static_data_gro %>% mutate(date_time_est = fastPOSIXct(date_time_utc, tz = "America/New_York")) 
+  
+  start_day_cum_kwh_john <- static_data_siel %>% filter(day(date_time_est) == day(ceiling_date(Sys.time() - days(2), unit = "day"))) %>% select(cum_kwh) %>% summarise(last(cum_kwh)) %>% as.numeric() +
+                        static_data_gro %>% filter(day(date_time_est) == day(ceiling_date(Sys.time() - days(2), unit = "day"))) %>% select(cum_kwh) %>% summarise(last(cum_kwh)) %>% as.numeric()
+  
+  start_month_cum_kwh_john <- static_data_siel %>% filter(date_time_est >= floor_date(Sys.time(), unit = "month")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric() + 
+                              static_data_gro %>% filter(date_time_est >= floor_date(Sys.time(), unit = "month")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
+  
+  start_year_cum_kwh_john <- static_data_siel %>% filter(date_time_est >= floor_date(Sys.time(), unit = "year")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric() + 
+    static_data_gro %>% filter(date_time_est >= floor_date(Sys.time(), unit = "year")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
   
   # reactive calcs that will update often
   fileReaderData_siel <- reactiveFileReader(

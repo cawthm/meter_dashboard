@@ -5,50 +5,44 @@ library("httr")
 library("xml2")
 library("dplyr")
 library("readr")
+library("StreamMetabolism")
 library("lubridate")
-library("fasttime") # need to deprecate this to lubridate
+
+source("helper_funcs.R")
+
+arcola_location <- list(address = "52 Paramus Rd", 
+                        city = "Paramus", 
+                        state = "NJ", 
+                        tz = "US/Eastern", # use OlsonNames() to see list of valis tz's
+                        lat = 40.923459, 
+                        lng = -74.086748) 
+
 
 arcola_base_url <- "http://arcolacovenant.synology.me:2856"
 
-url1 <- paste0(arcola_base_url, "/billing.htm")
-url2 <- paste0(arcola_base_url, "/rtdata.htm")
+url_a <- paste0(arcola_base_url, "/billing.htm")
+url_b <- paste0(arcola_base_url, "/rtdata.htm")
 
-my_xml1
 
-xml_find_first(my_xml1, ".//kwh_del") %>% xml_contents() # total cum kwh, uses url1
+while(year(Sys.Date()) <= 2017) {
+  daylight_span <- sunrise.set(arcola_location$lat, arcola_location$lng, date = ymd("2016-01-01", tz = arcola_location$tz))
 
-xml_find_first(my_xml2, ".//i_kw_net") %>% xml_contents() # instantaneous kw; uses url2
+  if (floor(difftime(Sys.Date(), daylight_span$sunset ,tz = arcola_location$tz ,units = "days")) != 0) {
+    daylight_span <- sunrise.set(arcola_location$lat, arcola_location$lng, date = Sys.Date() %>% ymd(.,tz = arcola_location$tz)) #sunrise.set gives info for yesterday, so we increment 1 day
+  }
 
-# takes a single url and returns a block of xml
-get_xml_block <- function(my_url, login, password) {
-  url_response <- RETRY("GET",url, pause_cap = 6000, authenticate(login, password))
-  if (http_error(url_response) == FALSE) {
-    content(url_response, "parsed")
+  this_day <- interval(daylight_span$sunrise, daylight_span$sunset, tzone = arcola_location$tz)
+  right_now <- ymd_hms(Sys.time(), tz = "US/Eastern")
+  
+  while(right_now %within% this_day) {
+    xml1 <- get_xml_block(url_a, "eM200", "PW", tz = arcola_location$tz)
+    xml2 <- get_xml_block(url_b, "eM200", "PW", tz = arcola_location$tz)
+    one_line_of_data <- create_data_line(xml1, xml2)
+    write_csv(one_line_of_data, "data/arcola_data.csv", append = TRUE)
+    Sys.sleep(15)
   }
 }
 
-#takes two blocks of xml and turns them into one line of data
-create_data_line <- function(my_xml1, my_xml2, tz = "US/Eastern") {
-  formatted_time <- xml_find_first(my_xml1, ".//meter_time") %>% xml_contents() #timestamp, uses xml1
-  data_frame(
-    date_time_utc = formatted_time,
-    age = my_xml2[[4]][[1]]  %>% as.numeric(),
-    inst_kw = attr(my_xml2[[27]], "value") %>% as.numeric(),
-    total_kw = attr(my_xml2[[7]], "value") %>% as.numeric()#,
-    #    date_time_est = as.character(fastPOSIXct(formatted_time, tz = "America/New_York"))
-  )
-}
 
 
 
-get_and_write_the_data <- function(url, output_file_path, login, password) {
-  url_response <- RETRY("GET",url, pause_cap = 6000, authenticate(login, password))
-  if (http_error(url_response) == FALSE) {
-    my_xml <- content(url_response, "parsed")
-    my_xml2 <- as_list(my_xml)$devices$device$records$record
-    line <- create_data_line(my_xml2)
-    write_csv(line, output_file_path, append = TRUE)
-  } else {
-    Sys.sleep(3)
-  }
-}

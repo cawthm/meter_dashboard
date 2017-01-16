@@ -13,14 +13,14 @@ url_siel<- "http://64.206.121.30/setup/devicexml.cgi?ADDRESS=250&TYPE=DATA"
 
 url_growatt <- "http://64.206.121.31/setup/devicexml.cgi?ADDRESS=250&TYPE=DATA"
 
-create_data_line <- function(my_xml2) {
+create_data_line <- function(my_xml2, tz = "US/Eastern") {
   formatted_time <- lubridate::ymd_hms(my_xml2[[1]][[1]]) # time of observation
   data_frame(
     date_time_utc = formatted_time,
     age = my_xml2[[2]][[1]]  %>% as.numeric(), # How many seconds old the data is
     inst_kw = attr(my_xml2[[11]], "value") %>% as.numeric(), # "Power Instantaneous, total all phases"
     total_kw = attr(my_xml2[[4]], "value") %>% as.numeric(), # "Energy Net"
-    date_time_est = as.character(fastPOSIXct(formatted_time, tz = "America/New_York"))
+    date_time_local = date_time_utc %>% with_tz(tz = tz)
   )
 }
 
@@ -33,7 +33,7 @@ get_and_write_the_data <- function(my_url, output_file_path, login, password) {
     #print(line)
     readr::write_csv(line, output_file_path, append = TRUE)
   } else {
-    Sys.sleep(3)
+    Sys.sleep(10)
   }
 }
 
