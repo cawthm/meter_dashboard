@@ -35,8 +35,8 @@ while(year(Sys.Date()) <= 2017) {
   right_now <- ymd_hms(Sys.time(), tz = "US/Eastern")
   
   while(right_now %within% this_day) {
-    xml1 <- get_xml_block(url_a, "eM200", "PW", tz = arcola_location$tz)
-    xml2 <- get_xml_block(url_b, "eM200", "PW", tz = arcola_location$tz)
+    xml1 <- get_xml_block(url_a, "eM200", "PW")
+    xml2 <- get_xml_block(url_b, "eM200", "PW")
     one_line_of_data <- create_data_line(xml1, xml2)
     write_csv(one_line_of_data, "data/arcola_data.csv", append = TRUE)
     Sys.sleep(15)
