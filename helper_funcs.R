@@ -1,6 +1,6 @@
 ##should turn these functions into an R package
-library(tidyverse)
-library(httr)
+library("tidyverse")
+library("StreamMetabolism")
 
 # takes a single url and returns a block of xml
 get_xml_block <- function(my_url, login, password) {
@@ -10,8 +10,40 @@ get_xml_block <- function(my_url, login, password) {
   }
 }
 
+# new function.  take a url + login/pwd credentials, return df
+
+meter_info_snapshot <- function(my_url, login, password, meter_type) {
+  meter_type <- tolower(meter_type)
+  assertthat::assert_that(meter_type %in% c("em", "obvius"))
+  machine_time <-   Sys.time() %>% lubridate::with_tz("UTC")
+  
+  if (meter_type == "em") {
+    my_xml1 <- get_xml_block(paste0(my_url, "/billing.htm"), login, password)
+    my_xml2 <- get_xml_block(paste0(my_url, "/rtdata.htm"), login, password)
+    date_time_utc <- xml2::xml_find_first(my_xml1, ".//meter_time") %>% xml_contents() %>% lubridate::mdy_hm(tz = "US/Eastern") %>% with_tz("UTC")
+    inst_kw <- xml_find_first(my_xml2, ".//i_kw_net") %>% xml_contents() %>% xml_text() %>% as.numeric() # instantaneous kw; uses url2
+    total_kw <- xml_find_first(my_xml1, ".//kwh_del") %>% xml_contents() %>% xml_text() %>% as.numeric()
+    
+  } else {
+    my_xml1 <- get_xml_block(my_url, login, password)
+    df <- tibble(field = my_xml1 %>% xml_find_all(".//point") %>% xml_attr("name"),
+                 value = my_xml1 %>% xml_find_all(".//point") %>% xml_attr("value") %>% as.numeric()
+    )
+    
+    date_time_utc <- xml2::xml_find_first(my_xml1, ".//time") %>% xml_contents() %>% lubridate::ymd_hms(tz = "UTC")
+    inst_kw <- df %>% filter(field == "Power Instantaneous, total all phases") %>% .$value
+    total_kw <- df %>% filter(field == "Energy Net") %>% .$value 
+  }
+  tibble(
+    date_time_utc,
+    age = difftime(machine_time, date_time_utc, units = "secs"),
+    inst_kw,
+    total_kw
+  )
+}
+
 #takes two blocks of xml (from 2 diff parts on the meter) and turns them into one line of data
-create_data_line <- function(my_xml1, meter_type, ...) { 
+create_data_line <- function(my_xml1, meter_type, my_xml2) { 
   meter_type <- tolower(meter_type)
   stopifnot(meter_type %in% c("em", "obvius"))
   

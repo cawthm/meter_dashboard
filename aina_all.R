@@ -14,8 +14,6 @@ aina_location <- list(address = "660 Waine'e St",
                         lat = 20.874239, 
                         lng = -156.675356)
 
-
-
 meter1_base_url <- "http://166.248.205.38:80"
 meter2_base_url <- "http://166.248.205.37:80"
 
@@ -28,7 +26,7 @@ url2_b <- paste0(meter2_base_url, "/rtdata.htm")
 while(year(Sys.Date()) <= 2017) {
   daylight_span <- sunrise.set(aina_location$lat, aina_location$lng, date = ymd("2016-01-01", tz = aina_location$tz))
   
-  if (floor(difftime(Sys.Date(), daylight_span$sunset ,tz = arcola_location$tz ,units = "days")) != 0) {
+  if (floor(difftime(Sys.Date(), daylight_span$sunset ,tz = aina_location$tz ,units = "days")) != 0) {
     daylight_span <- sunrise.set(aina_location$lat, aina_location$lng, date = Sys.Date() %>% ymd(.,tz = aina_location$tz)) #sunrise.set gives info for yesterday, so we increment 1 day
   }
   
@@ -42,7 +40,7 @@ while(year(Sys.Date()) <= 2017) {
     write_csv(one_line_of_data, "data/aina1_data.csv", append = TRUE)
     xml2_a <- get_xml_block(url2_a, "eM200", "PW")
     xml2_b <- get_xml_block(url2_b, "eM200", "PW")
-    one_line_of_data <- create_data_line(xml2_a, xml2_b, tz = aina_location$tz)
+    one_line_of_data2 <- create_data_line(xml2_a2, xml2_b, tz = aina_location$tz)
     write_csv(one_line_of_data, "data/aina2_data.csv", append = TRUE)
     Sys.sleep(15)
   }
