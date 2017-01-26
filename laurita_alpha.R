@@ -8,7 +8,7 @@ library("lubridate")
 library("fasttime")
 
 ## Base url of the meter
-url <- "http://50.248.181.209:1005/setup/devicexml.cgi?ADDRESS=10&TYPE=DATA&ts_cache=1462902068560"
+url <- "http://50.248.181.213:1005/setup/loggersetup.cgi?ADDRESS=10"
 
 laurita_location <- list(address = "52 Paramus Rd", 
                         city = "New Egypt", 
