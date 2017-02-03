@@ -29,7 +29,7 @@ meter_info_snapshot <- function(my_url, login, password, tz, meter_type) {
     my_xml2 <- get_xml_block(paste0(my_url, "/rtdata.htm"), login, password)
     date_time_utc <- xml2::xml_find_first(my_xml1, ".//meter_time") %>% xml_contents() %>% lubridate::mdy_hm(tz = tz) %>% with_tz("UTC")
     inst_kw <- xml_find_first(my_xml2, ".//i_kw_net") %>% xml_contents() %>% xml_text() %>% as.numeric() # instantaneous kw; uses url2
-    total_kw <- xml_find_first(my_xml1, ".//kwh_del") %>% xml_contents() %>% xml_text() %>% as.numeric()
+    cum_kwh <- xml_find_first(my_xml1, ".//kwh_del") %>% xml_contents() %>% xml_text() %>% as.numeric()
     
   }  
   if (meter_type == "obvius") {
@@ -40,19 +40,19 @@ meter_info_snapshot <- function(my_url, login, password, tz, meter_type) {
     
     date_time_utc <- xml2::xml_find_first(my_xml1, ".//time") %>% xml_contents() %>% lubridate::ymd_hms(tz = tz) %>% with_tz("UTC")
     inst_kw <- df %>% filter(field == "Power Instantaneous, total all phases") %>% .$value
-    total_kw <- df %>% filter(field == "Energy Net") %>% .$value 
+    cum_kwh <- df %>% filter(field == "Energy Net") %>% .$value 
   }
   if (meter_type == "laurita_obvius") {
     my_xml1 <- get_xml_block(my_url, login, password)
     date_time_utc <- my_xml1 %>% xml_find_all(".//font") %>% xml_find_all(".//span") %>% xml_contents() %>% as.character() %>% anytime(asUTC = T) %>% with_tz("UTC")
     inst_kw <- my_xml1 %>% xml_find_all(".//font") %>% xml_contents() %>% .[15] %>% as.character() %>% str_extract("[0-9]+.[0-9]{2}") %>% as.numeric()
-    total_kw <- my_xml1 %>% xml_find_all(".//font") %>% xml_contents() %>% .[5] %>% as.character() %>% str_extract("[0-9]+.[0-9]{2}") %>% as.numeric()
+    cum_kwh <- my_xml1 %>% xml_find_all(".//font") %>% xml_contents() %>% .[5] %>% as.character() %>% str_extract("[0-9]+.[0-9]{2}") %>% as.numeric()
   }
   tibble(
     date_time_utc,
     age = difftime(machine_time, date_time_utc, units = "secs")  %>% as.numeric() %>% round(2),
     inst_kw,
-    total_kw
+    cum_kwh
   )
 }
 
@@ -102,37 +102,37 @@ temp <- function(filelist) {
   y
 }
 
-# # just using the table for the names
-# ch <- odbcConnect("gse_db")
-# aina <- sqlFetch(ch, "DATA") %>% as_tibble()
-# obvius <- sqlFetch(ch, "Obvius") %>% as_tibble()
-# 
-# aina_all <- read_csv("~/Dropbox/Green Street Energy/mc/DATA.txt", col_names = FALSE)
-# 
-# obvius_all <- read_csv("~/Dropbox/Green Street Energy/mc/Obvius.txt", col_names = FALSE)
-# 
-# names(aina_all) <- names(aina)
-# 
-# names(obvius_all) <- names(obvius)
-# 
-# # get meter 1 first
-# 
-# aina1 <- aina_all %>% filter(METER_ID == "1111111100409D47614E") %>% select(date_time_utc = METER_TIME, kw = I_KW_DEL, cum_kwh = KWH_DEL) %>% mutate(date_time_utc = mdy_hms(date_time_utc, tz = "US/Hawaii")) %>% arrange(date_time_utc)
-# 
-# 
-# aina2 <- aina1 %>% group_by(date_time_utc) %>% summarise(kw = max(kw), cum_kwh = max(cum_kwh))
-# 
-# 
-# aina3 <- aina2 %>% mutate(date_time_utc = with_tz(date_time_utc,"UTC"))
-# 
-# # then meter 2
-# 
-# aina_start <- min(aina1$date) %>% floor_date("day")
-# aina_last <- max(aina1$date) %>% ceiling_date("day")
-# difftime(aina_start, aina_last, "days")
-# 
-# all_days <- tibble(date = aina_start + days(0:1866))
-# 
-# aina_obs_per_day <- aina1 %>% group_by(date) %>% summarise(n = n()) %>% arrange(desc(n))
-# 
-# all_days <- left_join(all_days, aina_obs_per_day)
+# just using the table for the names
+ch <- odbcConnect("gse_db")
+aina <- sqlFetch(ch, "DATA") %>% as_tibble()
+obvius <- sqlFetch(ch, "Obvius") %>% as_tibble()
+
+aina_all <- read_csv("~/Dropbox/Green Street Energy/mc/DATA.txt", col_names = FALSE)
+
+obvius_all <- read_csv("~/Dropbox/Green Street Energy/mc/Obvius.txt", col_names = FALSE)
+
+names(aina_all) <- names(aina)
+
+names(obvius_all) <- names(obvius)
+
+# get meter 1 first
+
+aina1 <- aina_all %>% filter(METER_ID == "1111111100409D47614E") %>% select(date_time_utc = METER_TIME, kw = I_KW_DEL, cum_kwh = KWH_DEL) %>% mutate(date_time_utc = mdy_hms(date_time_utc, tz = "US/Hawaii")) %>% arrange(date_time_utc)
+
+
+aina2 <- aina1 %>% group_by(date_time_utc) %>% summarise(kw = max(kw), cum_kwh = max(cum_kwh))
+
+
+aina3 <- aina2 %>% mutate(date_time_utc = with_tz(date_time_utc,"UTC"))
+
+# then meter 2
+
+aina_start <- min(aina1$date) %>% floor_date("day")
+aina_last <- max(aina1$date) %>% ceiling_date("day")
+difftime(aina_start, aina_last, "days")
+
+all_days <- tibble(date = aina_start + days(0:1866))
+
+aina_obs_per_day <- aina1 %>% group_by(date) %>% summarise(n = n()) %>% arrange(desc(n))
+
+all_days <- left_join(all_days, aina_obs_per_day)
