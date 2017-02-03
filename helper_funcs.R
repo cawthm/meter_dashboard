@@ -49,7 +49,7 @@ meter_info_snapshot <- function(my_url, login, password, tz, meter_type) {
     inst_kw <- my_xml1 %>% xml_find_all(".//font") %>% xml_contents() %>% .[15] %>% as.character() %>% str_extract("[0-9]+.[0-9]{2}") %>% as.numeric()
     cum_kwh <- my_xml1 %>% xml_find_all(".//font") %>% xml_contents() %>% .[5] %>% as.character() %>% str_extract("[0-9]+.[0-9]{2}") %>% as.numeric()
   }
-  tibble(
+  data_frame(
     date_time_utc,
     age = 0,
     inst_kw,
