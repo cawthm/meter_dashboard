@@ -1,0 +1,790 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<meta name="AUTHOR" content="Stephen Herzog, for Obvius Holdings LLC">
+<meta name="COPYRIGHT" content="Copyright 2001-2016 by Obvius Holdings LLC, All Rights Reserved.">
+<meta name="COPYRIGHT" content="SDProxy: portions Copyright 1999-2003 by Secure Design, All Rights Reserved.">
+<meta name="KEYWORDS" content="Network Setup Pages">
+<meta name="DESCRIPTION" content="Setup pages for this server">
+<meta name="GENERATOR" content="Acquisuite cgi application">
+<meta name="COMPILEDATE" content="Sep 19 2016 15:51:51 Pacific">
+<meta name="SOURCE" content="$Id: dev_e51c.cpp,v 1.7 2016/03/18 17:07:35 alevy Exp $">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="/style.css" type="text/css" media="all">
+</head>
+<body bgcolor="#FFFFFF" topmargin="5" onload="BeginBackgroundDeviceDataRefresh('devicexml.cgi?ADDRESS=10&amp;TYPE=DATA');">
+<script language="JavaScript" type="text/javascript" src="devicerefresh.js"></script><script language="JavaScript" type="text/javascript" src="relaybutton.js"></script><form action="loggersetup.cgi?ADDRESS=10&amp;T=230F" method="POST" name="mainform">
+<table border="0" cellpadding="0" width="100%"><tr align="left" valign="BOTTOM">
+<td nowrap width="90%" align="left" valign="BOTTOM"><b><font color="#3333FF" size="+2"><div id="DEVICENAME">Energy Meter</div></font></b></td>
+ <td nowrap width="40" align="right" valign="BOTTOM"><a href="loggersetup.cgi?ADDRESS=10&amp;T=230F"><img src="images/reload.png" alt="Refresh" width="18" height="18" border="0" align="TEXTTOP"></a></td>
+</tr></table>
+<hr size="0" align="left" noshade>
+<div>
+<span id="DEVICEADDRESS">Device Address: <font color="blue">10</font></span> on RS485 port</div>
+<div id="DEVICETYPE">Device Type: <font color="blue">Veris Industries E51C2 Power Meter , Bi-dir, Full Data Set (id=247)</font>
+</div>
+<div id="DEVICESTATUS">Status: <font color="blue">Ok</font> <font color="#C0C0C0">(cached)</font>
+</div>
+<input type="hidden" name="POINT" value=""><hr size="0" align="left" noshade>
+<table border="0" cols="8" width="100%">
+<tr align="left" valign="bottom">
+<th nowrap bgcolor="#FFFFCC">#</th>
+ <th nowrap bgcolor="#FFFFCC">Function</th>
+ <th nowrap bgcolor="#FFFFCC">Current Reading</th>
+ <th nowrap bgcolor="#FFFFCC">Low Alarm</th>
+ <th nowrap bgcolor="#FFFFCC">High Alarm</th>
+ <th nowrap bgcolor="#FFFFCC"> </th>
+ <th nowrap width="4%" bgcolor="#FFFFCC">Console</th>
+ <th nowrap align="right" width="4%" bgcolor="#FFFFCC"> </th>
+</tr>
+<tr align="left" valign="middle" id="R0" title="mb010pt0">
+<td bgcolor="#FFFFFF">0</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P0N">Accumulated Real Energy Net</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P0V"><font color="blue">1146741.50 kWh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P0L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P0H">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P0X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P0C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P0B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R1" title="mb010pt1">
+<td bgcolor="#FFFFCC">1</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P1N">Real Energy Quadrants 1 &amp; 4, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P1V"><font color="blue">1198363.75 kWh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P1L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P1H">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P1X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P1C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P1B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R2" title="mb010pt2">
+<td bgcolor="#FFFFFF">2</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P2N">Real Energy Quadrants 2 &amp; 3, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P2V"><font color="blue">51622.24 kWh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P2L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P2H">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P2X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P2C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P2B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R3" title="mb010pt3">
+<td bgcolor="#FFFFCC">3</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P3N">Reactive Energy Quadrant 1</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P3V"><font color="blue">61193.72 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P3L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P3H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P3X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P3C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P3B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R4" title="mb010pt4">
+<td bgcolor="#FFFFFF">4</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P4N">Reactive Energy Quadrant 2</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P4V"><font color="blue">450.55 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P4L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P4H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P4X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P4C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P4B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R5" title="mb010pt5">
+<td bgcolor="#FFFFCC">5</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P5N">Reactive Energy Quadrant 3</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P5V"><font color="blue">10260.88 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P5L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P5H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P5X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P5C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P5B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R6" title="mb010pt6">
+<td bgcolor="#FFFFFF">6</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P6N">Reactive Energy Quadrant 4</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P6V"><font color="blue">22095.75 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P6L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P6H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P6X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P6C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P6B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R7" title="mb010pt7">
+<td bgcolor="#FFFFCC">7</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P7N">Apparent Energy Net</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P7V"><font color="blue">1146793.88 VAh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P7L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P7H">0.00 VAh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P7X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P7C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P7B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R8" title="mb010pt8">
+<td bgcolor="#FFFFFF">8</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P8N">Apparent Energy Quadrants 1 &amp; 4</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P8V"><font color="blue">1203320.88 VAh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P8L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P8H">0.00 VAh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P8X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P8C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P8B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R9" title="mb010pt9">
+<td bgcolor="#FFFFCC">9</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P9N">Apparent Energy Quadrants 2 &amp; 3</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P9V"><font color="blue">56527.04 VAh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P9L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P9H">0.00 VAh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P9X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P9C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P9B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R10" title="mb010pt10">
+<td bgcolor="#FFFFFF">10</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P10N">Total Net Instantaneous Real Power</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P10V"><font color="blue">1.29 kW</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P10L">0.00 kW</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P10H">0.00 kW</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P10X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P10C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P10B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R11" title="mb010pt11">
+<td bgcolor="#FFFFCC">11</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P11N">Total Net Instantaneous Reactive Power</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P11V"><font color="blue">-0.57 kVAR</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P11L">0.00 kVAR</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P11H">0.00 kVAR</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P11X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P11C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P11B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R12" title="mb010pt12">
+<td bgcolor="#FFFFFF">12</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P12N">Total Net Instantaneous Apparent Power</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P12V"><font color="blue">1.41 kVA</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P12L">0.00 kVA</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P12H">0.00 kVA</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P12X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P12C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P12B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R13" title="mb010pt13">
+<td bgcolor="#FFFFCC">13</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P13N">Total Power Factor</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P13V"><font color="blue">0.91 </font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P13L">0.00 </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P13H">0.00 </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P13X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P13C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P13B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R14" title="mb010pt14">
+<td bgcolor="#FFFFFF">14</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P14N">Voltage, L-L, 3p Ave</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P14V"><font color="blue">260.31 Volts</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P14L">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P14H">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P14X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P14C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P14B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R15" title="mb010pt15">
+<td bgcolor="#FFFFCC">15</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P15N">Voltage, L-N, 3p Ave</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P15V"><font color="blue">153.82 Volts</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P15L">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P15H">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P15X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P15C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P15B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R16" title="mb010pt16">
+<td bgcolor="#FFFFFF">16</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P16N">Current, 3p Ave</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P16V"><font color="blue">13.95 Amps</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P16L">0.00 Amps</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P16H">0.00 Amps</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P16X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P16C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P16B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R17" title="mb010pt17">
+<td bgcolor="#FFFFCC">17</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P17N">Frequency</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P17V"><font color="blue">60.07 Hz</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P17L">0.00 Hz</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P17H">0.00 Hz</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P17X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P17C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P17B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R18" title="mb010pt18">
+<td bgcolor="#FFFFFF">18</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P18N">Total Real Power Present Demand</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P18V"><font color="blue">5.21 kW</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P18L">0.00 kW</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P18H">0.00 kW</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P18X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P18C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P18B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R19" title="mb010pt19">
+<td bgcolor="#FFFFCC">19</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P19N">Total Reactive Power Present Demand</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P19V"><font color="blue">-0.31 kVAR</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P19L">0.00 kVAR</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P19H">0.00 kVAR</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P19X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P19C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P19B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R20" title="mb010pt20">
+<td bgcolor="#FFFFFF">20</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P20N">Total Apparent Power Present Demand</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P20V"><font color="blue">5.23 kVA</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P20L">0.00 kVA</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P20H">0.00 kVA</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P20X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P20C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P20B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R21" title="mb010pt21">
+<td bgcolor="#FFFFCC">21</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P21N">Total Real Power Max Demand, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P21V"><font color="blue">255.76 kW</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P21L">0.00 kW</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P21H">0.00 kW</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P21X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P21C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P21B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R22" title="mb010pt22">
+<td bgcolor="#FFFFFF">22</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P22N">Total Reactive Power Max Demand, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P22V"><font color="blue">13.86 kVAR</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P22L">0.00 kVAR</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P22H">0.00 kVAR</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P22X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P22C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P22B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R23" title="mb010pt23">
+<td bgcolor="#FFFFCC">23</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P23N">Total Apparent Power Max Demand, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P23V"><font color="blue">256.07 kVA</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P23L">0.00 kVA</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P23H">0.00 kVA</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P23X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P23C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P23B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R24" title="mb010pt24">
+<td bgcolor="#FFFFFF">24</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P24N">Total Real Power Max Demand, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P24V"><font color="blue">-192.11 kW</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P24L">0.00 kW</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P24H">0.00 kW</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P24X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P24C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P24B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R25" title="mb010pt25">
+<td bgcolor="#FFFFCC">25</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P25N">Total Reactive Power Max Demand, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P25V"><font color="blue">-125.84 kVAR</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P25L">0.00 kVAR</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P25H">0.00 kVAR</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P25X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P25C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P25B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R26" title="mb010pt26">
+<td bgcolor="#FFFFFF">26</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P26N">Total Apparent Power Max Demand, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P26V"><font color="blue">192.38 kVA</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P26L">0.00 kVA</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P26H">0.00 kVA</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P26X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P26C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P26B"> </td>
+</tr>
+<tr align="left" valign="middle" height="1">
+<td colspan="8" height="1" width="100%" bgcolor="#FFFFFF"><hr size="0" align="left" noshade></td>
+<td></td>
+</tr>
+<tr align="left" valign="middle" id="R27" title="mb010pt27">
+<td bgcolor="#FFFFCC">27</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P27N">Accumulated Real Energy, Phase A, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P27V"><font color="blue">402618.19 kWh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P27L">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P27H">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P27X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P27C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P27B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R28" title="mb010pt28">
+<td bgcolor="#FFFFFF">28</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P28N">Accumulated Real Energy, Phase B, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P28V"><font color="blue">406178.47 kWh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P28L">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P28H">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P28X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P28C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P28B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R29" title="mb010pt29">
+<td bgcolor="#FFFFCC">29</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P29N">Accumulated Real Energy, Phase C, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P29V"><font color="blue">389567.06 kWh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P29L">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P29H">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P29X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P29C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P29B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R30" title="mb010pt30">
+<td bgcolor="#FFFFFF">30</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P30N">Accumulated Real Energy, Phase A, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P30V"><font color="blue">14237.24 kWh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P30L">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P30H">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P30X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P30C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P30B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R31" title="mb010pt31">
+<td bgcolor="#FFFFCC">31</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P31N">Accumulated Real Energy, Phase B, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P31V"><font color="blue">16819.25 kWh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P31L">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P31H">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P31X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P31C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P31B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R32" title="mb010pt32">
+<td bgcolor="#FFFFFF">32</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P32N">Accumulated Real Energy, Phase C, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P32V"><font color="blue">20565.75 kWh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P32L">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P32H">0.00 kWh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P32X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P32C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P32B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R33" title="mb010pt33">
+<td bgcolor="#FFFFCC">33</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P33N">Accumulated Q1 Reactive Energy, Phase A, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P33V"><font color="blue">7938.71 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P33L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P33H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P33X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P33C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P33B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R34" title="mb010pt34">
+<td bgcolor="#FFFFFF">34</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P34N">Accumulated Q1 Reactive Energy, Phase B, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P34V"><font color="blue">33750.04 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P34L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P34H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P34X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P34C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P34B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R35" title="mb010pt35">
+<td bgcolor="#FFFFCC">35</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P35N">Accumulated Q1 Reactive Energy, Phase C, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P35V"><font color="blue">19504.97 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P35L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P35H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P35X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P35C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P35B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R36" title="mb010pt36">
+<td bgcolor="#FFFFFF">36</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P36N">Accumulated Q2 Reactive Energy, Phase A, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P36V"><font color="blue">341.82 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P36L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P36H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P36X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P36C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P36B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R37" title="mb010pt37">
+<td bgcolor="#FFFFCC">37</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P37N">Accumulated Q2 Reactive Energy, Phase B, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P37V"><font color="blue">9.76 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P37L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P37H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P37X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P37C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P37B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R38" title="mb010pt38">
+<td bgcolor="#FFFFFF">38</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P38N">Accumulated Q2 Reactive Energy, Phase C, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P38V"><font color="blue">98.97 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P38L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P38H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P38X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P38C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P38B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R39" title="mb010pt39">
+<td bgcolor="#FFFFCC">39</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P39N">Accumulated Q3 Reactive Energy, Phase A, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P39V"><font color="blue">1934.43 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P39L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P39H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P39X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P39C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P39B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R40" title="mb010pt40">
+<td bgcolor="#FFFFFF">40</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P40N">Accumulated Q3 Reactive Energy, Phase B, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P40V"><font color="blue">2286.41 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P40L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P40H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P40X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P40C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P40B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R41" title="mb010pt41">
+<td bgcolor="#FFFFCC">41</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P41N">Accumulated Q3 Reactive Energy, Phase C, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P41V"><font color="blue">6040.04 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P41L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P41H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P41X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P41C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P41B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R42" title="mb010pt42">
+<td bgcolor="#FFFFFF">42</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P42N">Accumulated Q4 Reactive Energy, Phase A, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P42V"><font color="blue">21961.32 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P42L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P42H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P42X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P42C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P42B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R43" title="mb010pt43">
+<td bgcolor="#FFFFCC">43</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P43N">Accumulated Q4 Reactive Energy, Phase B, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P43V"><font color="blue">12.01 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P43L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P43H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P43X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P43C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P43B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R44" title="mb010pt44">
+<td bgcolor="#FFFFFF">44</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P44N">Accumulated Q4 Reactive Energy, Phase C, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P44V"><font color="blue">122.42 VARh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P44L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P44H">0.00 VARh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P44X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P44C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P44B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R45" title="mb010pt45">
+<td bgcolor="#FFFFCC">45</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P45N">Accumulated Apparent Energy, Phase A, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P45V"><font color="blue">415500.28 VAh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P45L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P45H">0.00 VAh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P45X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P45C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P45B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R46" title="mb010pt46">
+<td bgcolor="#FFFFFF">46</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P46N">Accumulated Apparent Energy, Phase B, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P46V"><font color="blue">407857.88 VAh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P46L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P46H">0.00 VAh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P46X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P46C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P46B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R47" title="mb010pt47">
+<td bgcolor="#FFFFCC">47</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P47N">Accumulated Apparent Energy, Phase C, Import</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P47V"><font color="blue">390395.53 VAh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P47L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P47H">0.00 VAh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P47X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P47C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P47B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R48" title="mb010pt48">
+<td bgcolor="#FFFFFF">48</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P48N">Accumulated Apparent Energy, Phase A, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P48V"><font color="blue">15688.12 VAh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P48L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P48H">0.00 VAh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P48X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P48C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P48B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R49" title="mb010pt49">
+<td bgcolor="#FFFFCC">49</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P49N">Accumulated Apparent Energy, Phase B, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P49V"><font color="blue">17220.60 VAh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P49L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P49H">0.00 VAh</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P49X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P49C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P49B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R50" title="mb010pt50">
+<td bgcolor="#FFFFFF">50</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P50N">Accumulated Apparent Energy, Phase C, Export</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P50V"><font color="blue">23150.87 VAh</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P50L"> </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P50H">0.00 VAh</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P50X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P50C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P50B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R51" title="mb010pt51">
+<td bgcolor="#FFFFCC">51</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P51N">Real Power, Phase A</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P51V"><font color="blue">0.69 kW</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P51L">0.00 kW</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P51H">0.00 kW</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P51X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P51C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P51B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R52" title="mb010pt52">
+<td bgcolor="#FFFFFF">52</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P52N">Real Power, Phase B</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P52V"><font color="blue">1.27 kW</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P52L">0.00 kW</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P52H">0.00 kW</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P52X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P52C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P52B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R53" title="mb010pt53">
+<td bgcolor="#FFFFCC">53</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P53N">Real Power, Phase C</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P53V"><font color="blue">-0.67 kW</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P53L">0.00 kW</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P53H">0.00 kW</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P53X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P53C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P53B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R54" title="mb010pt54">
+<td bgcolor="#FFFFFF">54</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P54N">Reactive Power, Phase A</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P54V"><font color="blue">-1.29 kVAR</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P54L">0.00 kVAR</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P54H">0.00 kVAR</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P54X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P54C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P54B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R55" title="mb010pt55">
+<td bgcolor="#FFFFCC">55</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P55N">Reactive Power, Phase B</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P55V"><font color="blue">0.57 kVAR</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P55L">0.00 kVAR</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P55H">0.00 kVAR</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P55X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P55C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P55B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R56" title="mb010pt56">
+<td bgcolor="#FFFFFF">56</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P56N">Reactive Power, Phase C</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P56V"><font color="blue">0.15 kVAR</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P56L">0.00 kVAR</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P56H">0.00 kVAR</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P56X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P56C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P56B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R57" title="mb010pt57">
+<td bgcolor="#FFFFCC">57</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P57N">Apparent Power, Phase A</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P57V"><font color="blue">1.47 kVA</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P57L">0.00 kVA</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P57H">0.00 kVA</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P57X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P57C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P57B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R58" title="mb010pt58">
+<td bgcolor="#FFFFFF">58</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P58N">Apparent Power, Phase B</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P58V"><font color="blue">1.39 kVA</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P58L">0.00 kVA</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P58H">0.00 kVA</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P58X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P58C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P58B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R59" title="mb010pt59">
+<td bgcolor="#FFFFCC">59</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P59N">Apparent Power, Phase C</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P59V"><font color="blue">0.68 kVA</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P59L">0.00 kVA</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P59H">0.00 kVA</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P59X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P59C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P59B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R60" title="mb010pt60">
+<td bgcolor="#FFFFFF">60</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P60N">Power Factor, Phase A</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P60V"><font color="blue">0.47 </font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P60L">0.00 </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P60H">0.00 </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P60X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P60C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P60B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R61" title="mb010pt61">
+<td bgcolor="#FFFFCC">61</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P61N">Power Factor, Phase B</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P61V"><font color="blue">0.91 </font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P61L">0.00 </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P61H">0.00 </td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P61X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P61C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P61B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R62" title="mb010pt62">
+<td bgcolor="#FFFFFF">62</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P62N">Power Factor, Phase C</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P62V"><font color="blue">-0.98 </font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P62L">0.00 </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P62H">0.00 </td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P62X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P62C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P62B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R63" title="mb010pt63">
+<td bgcolor="#FFFFCC">63</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P63N">Voltage, Phase A-B</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P63V"><font color="blue">263.85 Volts</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P63L">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P63H">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P63X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P63C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P63B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R64" title="mb010pt64">
+<td bgcolor="#FFFFFF">64</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P64N">Voltage, Phase B-C</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P64V"><font color="blue">268.03 Volts</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P64L">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P64H">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P64X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P64C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P64B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R65" title="mb010pt65">
+<td bgcolor="#FFFFCC">65</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P65N">Voltage, Phase A-C</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P65V"><font color="blue">249.07 Volts</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P65L">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P65H">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P65X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P65C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P65B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R66" title="mb010pt66">
+<td bgcolor="#FFFFFF">66</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P66N">Voltage, Phase A-N</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P66V"><font color="blue">153.75 Volts</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P66L">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P66H">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P66X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P66C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P66B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R67" title="mb010pt67">
+<td bgcolor="#FFFFCC">67</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P67N">Voltage, Phase B-N</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P67V"><font color="blue">152.79 Volts</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P67L">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P67H">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P67X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P67C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P67B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R68" title="mb010pt68">
+<td bgcolor="#FFFFFF">68</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P68N">Voltage, Phase C-N</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P68V"><font color="blue">154.93 Volts</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P68L">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P68H">0.00 Volts</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P68X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P68C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P68B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R69" title="mb010pt69">
+<td bgcolor="#FFFFCC">69</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P69N">Current, Phase A</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P69V"><font color="blue">15.63 Amps</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P69L">0.00 Amps</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P69H">0.00 Amps</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P69X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P69C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P69B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R70" title="mb010pt70">
+<td bgcolor="#FFFFFF">70</td> <td align="left" nowrap bgcolor="#FFFFFF" id="P70N">Current, Phase B</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P70V"><font color="blue">14.59 Amps</font></td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P70L">0.00 Amps</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P70H">0.00 Amps</td>
+ <td align="left" nowrap bgcolor="#FFFFFF" id="P70X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFFF" id="P70C"> </td>
+ <td nowrap bgcolor="#FFFFFF" valign="top" id="P70B"> </td>
+</tr>
+<tr align="left" valign="middle" id="R71" title="mb010pt71">
+<td bgcolor="#FFFFCC">71</td> <td align="left" nowrap bgcolor="#FFFFCC" id="P71N">Current, Phase C</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P71V"><font color="blue">11.62 Amps</font></td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P71L">0.00 Amps</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P71H">0.00 Amps</td>
+ <td align="left" nowrap bgcolor="#FFFFCC" id="P71X"> </td>
+ <td align="center" nowrap bgcolor="#FFFFCC" id="P71C"> </td>
+ <td nowrap bgcolor="#FFFFCC" valign="top" id="P71B"> </td>
+</tr>
+</table>
+<hr size="0" align="left" noshade>
+<table border="0" width="100%"><tr>
+<td>
+<input type="submit" name="SETUP" value="Configure"><input type="submit" name="SETUP" value="Done">
+</td>
+<td align="right">
+<a href="devicexml.cgi?ADDRESS=10&amp;TYPE=DATA"><img src="../images/xml.png" width="34" height="12" border="0" align="center" alt="Show XML"></a> <a href="loghtml.cgi?ADDRESS=10"><img src="../images/log.png" width="34" height="12" border="0" align="center" alt="Show Log"></a> </td>
+</tr></table>
+<script type="text/javascript" src="/setup/status.js"></script><script type="text/javascript"><!--
+var AsUpdaterPreviousOnLoad = window.onload;
+var AsUpdater;
+window.onload=function(){
+ AsUpdater = new AsStatusUpdater("/setup/status.cgi?IDLIST=",3000,null);
+ AsUpdater.addItem('localtime');
+ AsUpdater.addItem('status_updatemgrnotify');
+ AsUpdater.addItem('reminders');
+ if(AsUpdaterPreviousOnLoad) {AsUpdaterPreviousOnLoad();}
+ AsUpdater.run();
+};
+--></script><script src="/setup/jquery.min.js"></script><script src="/setup/jquery.jpanelmenu.js"></script><script src="/setup/menu.js"></script><script type="text/javascript">
+var AsForm = {
+	SubmitHidden: function(url, fields) {
+		var fom, body;
+
+		fom = document.createElement('FORM');
+		fom.action = url;
+		fom.method = 'post';
+		for (var f in fields) {
+			var e = document.createElement('INPUT');
+			e.type = 'hidden';
+			e.name = f;
+			e.value = fields[f];
+			fom.appendChild(e);
+		}
+		body = document.getElementsByTagName('body')[0];
+		fom = body.appendChild(fom);
+		fom.submit();
+		body.removeChild(fom);
+	}
+}
+function AsReboot()
+{
+	 if (confirm('Are you sure you want to reboot the system?')) AsForm.SubmitHidden('/setup/statup.cgi', { REBOOT: 1 });
+}
+function AsUpdateInstall()
+{
+	AsForm.SubmitHidden('/setup/updatemgr.cgi', { INSTALL: 1 });
+}
+function AsUpdateAbort()
+{
+  var xmlhttp;
+  if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  }
+  else
+  {// code for IE6, IE5
+    xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
+  }
+  xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+      document.getElementById('status_updatemgrnotify').innerHTML=xmlhttp.responseText;
+    }
+  }
+  xmlhttp.open('POST', '/setup/updatemgr.cgi', true);
+  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");  xmlhttp.send('ABORT=1');
+}
+function AsInsertUpdateNotify()
+{
+  var n = document.createElement('div');
+  n.setAttribute('id', 'status_updatemgrnotify');
+  n.style.cssText = 'position:fixed; top:0px; right:0px; text-align:center; line-height:2.5; max-width: 700px;' +
+    '-moz-box-shadow: -3px 3px 4px #A6A6A6; -webkit-box-shadow: -3px 3px 4px #A6A6A6; box-shadow: -3px 3px 4px #A6A6A6;'
+  var body = document.body;
+  body.insertBefore(n, body.firstChild);
+}
+
+AsInsertUpdateNotify();
+</script><div id="reminders">
+</div>
+<div id="footer">
+<hr size="0" noshade>
+<table border="0" width="100%"><tr>
+<td>
+<img src="/images/Obvius109x26.png" width="109" height="26" alt="Obvius"><font face="Verdana, Arial, Helvetica" size="1">®</font><br><font face="Verdana, Arial, Helvetica" size="1">20497 SW Teton Ave, Tualatin, OR 97062<br>Ph: +1-503-601-2099 Fax: +1-503-601-6878</font><br><font face="Verdana, Arial, Helvetica" size="1"></font>
+</td>
+<td align="right" valign="bottom">
+<a href="mailto:support@obvius.com"><font face="Verdana, Arial, Helvetica" size="1">support@obvius.com<img src="/images/mailto.png" border="0" width="14" height="10" alt="Obvius"></font></a><br><font face="Verdana, Arial, Helvetica" size="1">Current time: <span id="localtime">Wednesday, January 25 2017 22:13:35 UTC</span></font>
+</td>
+</tr></table>
+</div>
+</form>
+</body>
+</html>

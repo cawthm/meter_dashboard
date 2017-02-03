@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DAS>
+  <name>001EC6070189</name>
+  <serial>001EC6070189</serial>
+  <devices>
+    <device>
+      <name>Internal Meter</name>
+      <address>250</address>
+      <type>Obvius, AcquiSuite+, A8814</type>
+      <class>73</class>
+      <status>Ok</status>
+      <numpoints>30</numpoints>
+      <records>
+        <record>
+          <time zone="UTC">2017-01-17 23:22:00</time>
+          <age units="seconds">45</age>
+          <error text="Ok">0</error>
+          <point number="0" name="Energy Net" units="kWh" value="150379.61"/>
+          <point number="1" name="Energy Total" units="kWh" value="152094.98"/>
+          <point number="2" name="Energy Delivered" units="kWh" value="151237.30"/>
+          <point number="3" name="Energy Received" units="kWh" value="857.68"/>
+          <point number="4" name="Reactive Energy Delivered" units="kVARh" value="963.98"/>
+          <point number="5" name="Reactive Energy Received" units="kVARh" value="397.06"/>
+          <point number="6" name="Power Average, total all phases" units="kW" value="-0.07"/>
+          <point number="7" name="Power Instantaneous, total all phases" units="kW" value="-0.07"/>
+          <point number="8" name="Apparent Power Instantaneous, total all phases" units="kVA" value="0.09"/>
+          <point number="9" name="Reactive Power Instantaneous, total all phases" units="kVAR" value="0.05"/>
+          <point number="10" name="Voltage L-N Average all phases" units="Volts" value="122.5"/>
+          <point number="11" name="Voltage L-L Average all phases" units="Volts" value="212.1"/>
+          <point number="12" name="Current Average all phases" units="Amps" value="0.33"/>
+          <point number="13" name="Power Factor Average all phases" units="" value="NULL"/>
+          <point number="14" name="Frequency" units="Hz" value="60.00"/>
+          <point number="15" name="Voltage per phase A-N" units="Volts" value="117.3"/>
+          <point number="16" name="Voltage per phase B-N" units="Volts" value="124.6"/>
+          <point number="17" name="Voltage per phase C-N" units="Volts" value="125.6"/>
+          <point number="18" name="Voltage per phase A-B" units="Volts" value="210.3"/>
+          <point number="19" name="Voltage per phase B-C" units="Volts" value="212.6"/>
+          <point number="20" name="Voltage per phase C-A" units="Volts" value="213.3"/>
+          <point number="21" name="Current Phase A" units="Amps" value="0.70"/>
+          <point number="22" name="Current Phase B" units="Amps" value="0"/>
+          <point number="23" name="Current Phase C" units="Amps" value="0.29"/>
+          <point number="24" name="Power Phase A" units="kW" value="-0.06"/>
+          <point number="25" name="Power Phase B" units="kW" value="0"/>
+          <point number="26" name="Power Phase C" units="kW" value="-0.01"/>
+          <point number="27" name="Power Factor Phase A" units="" value="-0.9193"/>
+          <point number="28" name="Power Factor Phase B" units="" value="NULL"/>
+          <point number="29" name="Power Factor Phase C" units="" value="-0.3329"/>
+        </record>
+      </records>
+    </device>
+  </devices>
+</DAS>
