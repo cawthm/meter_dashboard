@@ -1,1 +1,8 @@
-device,url,login,pass,typeaina1_meter,http://166.248.205.38:80,eM200,PW,emaina2_meter,http://166.248.205.37:80,eM200,PW,emarcola_meter,http://arcolacovenant.synology.me:2856,eM200,PW,emlaurita_obvius,http://50.248.181.213:1005/setup/loggersetup.cgi?ADDRESS=10,admin,deck0B71,laurita_obviuslaurita_meter,http://50.248.181.213:1005/setup/loggersetup.cgi?ADDRESS=10,eM200,PW,emjohnson_siel_obvius,http://64.206.121.30/setup/devicexml.cgi?ADDRESS=250&TYPE=DATA,admin,admin,obviusjohnson_growatt_obvius,http://64.206.121.31/setup/devicexml.cgi?ADDRESS=250&TYPE=DATA,admin,admin,obvius
+device,url,login,pass,type
+aina1_meter,http://166.248.205.38:80,eM200,PW,em
+aina2_meter,http://166.248.205.37:80,eM200,PW,em
+arcola_meter,http://arcolacovenant.synology.me:2856,eM200,PW,em
+laurita_obvius,http://50.248.181.213:1005/setup/loggersetup.cgi?ADDRESS=10,admin,deck0B71,laurita_obvius
+laurita_meter,http://50.248.181.213:1002,eM200,PW,em
+johnston_siel_obvius,http://64.206.121.30/setup/devicexml.cgi?ADDRESS=250&TYPE=DATA,admin,admin,obvius
+johnston_growatt_obvius,http://64.206.121.31/setup/devicexml.cgi?ADDRESS=250&TYPE=DATA,admin,admin,obvius
