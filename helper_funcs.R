@@ -1,7 +1,6 @@
 ##should turn these functions into an R package
 library("tidyverse")
 library("StreamMetabolism")
-library("anytime")
 library("httr")
 library("xml2")
 library("stringr")
