@@ -22,6 +22,7 @@ get_xml_block <- function(my_url, login, password) {
 meter_info_snapshot <- function(my_url, login, password, tz, meter_type) {
   meter_type <- tolower(meter_type)
   assertthat::assert_that(meter_type %in% c("em", "obvius", "laurita_obvius"))
+
   machine_time <-   Sys.time() %>% lubridate::with_tz("UTC")
   
   if (meter_type == "em") {
@@ -50,7 +51,7 @@ meter_info_snapshot <- function(my_url, login, password, tz, meter_type) {
   }
   tibble(
     date_time_utc,
-    age = difftime(machine_time, date_time_utc, units = "secs")  %>% as.numeric() %>% round(2),
+    age = 0,
     inst_kw,
     cum_kwh
   )
@@ -91,48 +92,48 @@ meter_info_snapshot <- function(my_url, login, password, tz, meter_type) {
 # 
 # }
 
-### everything below here should be cleaned up
-temp <- function(filelist) {
-  y <- tibble(x = character(),y= character(),z= character()) 
-  for (i in filelist) {
-    x <- read_csv(i)[,c(1,2,4)] %>% as_tibble()
-    names(y) <- names(x)
-    y = rbind(x,y)
-  }
-  y
-}
-
-# just using the table for the names
-ch <- odbcConnect("gse_db")
-aina <- sqlFetch(ch, "DATA") %>% as_tibble()
-obvius <- sqlFetch(ch, "Obvius") %>% as_tibble()
-
-aina_all <- read_csv("~/Dropbox/Green Street Energy/mc/DATA.txt", col_names = FALSE)
-
-obvius_all <- read_csv("~/Dropbox/Green Street Energy/mc/Obvius.txt", col_names = FALSE)
-
-names(aina_all) <- names(aina)
-
-names(obvius_all) <- names(obvius)
-
-# get meter 1 first
-
-aina1 <- aina_all %>% filter(METER_ID == "1111111100409D47614E") %>% select(date_time_utc = METER_TIME, kw = I_KW_DEL, cum_kwh = KWH_DEL) %>% mutate(date_time_utc = mdy_hms(date_time_utc, tz = "US/Hawaii")) %>% arrange(date_time_utc)
-
-
-aina2 <- aina1 %>% group_by(date_time_utc) %>% summarise(kw = max(kw), cum_kwh = max(cum_kwh))
-
-
-aina3 <- aina2 %>% mutate(date_time_utc = with_tz(date_time_utc,"UTC"))
-
-# then meter 2
-
-aina_start <- min(aina1$date) %>% floor_date("day")
-aina_last <- max(aina1$date) %>% ceiling_date("day")
-difftime(aina_start, aina_last, "days")
-
-all_days <- tibble(date = aina_start + days(0:1866))
-
-aina_obs_per_day <- aina1 %>% group_by(date) %>% summarise(n = n()) %>% arrange(desc(n))
-
-all_days <- left_join(all_days, aina_obs_per_day)
+# ### everything below here should be cleaned up
+# temp <- function(filelist) {
+#   y <- tibble(x = character(),y= character(),z= character()) 
+#   for (i in filelist) {
+#     x <- read_csv(i)[,c(1,2,4)] %>% as_tibble()
+#     names(y) <- names(x)
+#     y = rbind(x,y)
+#   }
+#   y
+# }
+# 
+# # just using the table for the names
+# ch <- odbcConnect("gse_db")
+# aina <- sqlFetch(ch, "DATA") %>% as_tibble()
+# obvius <- sqlFetch(ch, "Obvius") %>% as_tibble()
+# 
+# aina_all <- read_csv("~/Dropbox/Green Street Energy/mc/DATA.txt", col_names = FALSE)
+# 
+# obvius_all <- read_csv("~/Dropbox/Green Street Energy/mc/Obvius.txt", col_names = FALSE)
+# 
+# names(aina_all) <- names(aina)
+# 
+# names(obvius_all) <- names(obvius)
+# 
+# # get meter 1 first
+# 
+# aina1 <- aina_all %>% filter(METER_ID == "1111111100409D47614E") %>% select(date_time_utc = METER_TIME, kw = I_KW_DEL, cum_kwh = KWH_DEL) %>% mutate(date_time_utc = mdy_hms(date_time_utc, tz = "US/Hawaii")) %>% arrange(date_time_utc)
+# 
+# 
+# aina2 <- aina1 %>% group_by(date_time_utc) %>% summarise(kw = max(kw), cum_kwh = max(cum_kwh))
+# 
+# 
+# aina3 <- aina2 %>% mutate(date_time_utc = with_tz(date_time_utc,"UTC"))
+# 
+# # then meter 2
+# 
+# aina_start <- min(aina1$date) %>% floor_date("day")
+# aina_last <- max(aina1$date) %>% ceiling_date("day")
+# difftime(aina_start, aina_last, "days")
+# 
+# all_days <- tibble(date = aina_start + days(0:1866))
+# 
+# aina_obs_per_day <- aina1 %>% group_by(date) %>% summarise(n = n()) %>% arrange(desc(n))
+# 
+# all_days <- left_join(all_days, aina_obs_per_day)
