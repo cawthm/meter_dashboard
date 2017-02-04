@@ -17,6 +17,7 @@ while(year(Sys.Date()) <= 2017) { # everything in UTC
   
   if (abs(difftime(Sys.time() %>% with_tz("UTC"), daylight_span$sunset ,tz = location$tz ,units = "hours")) >= 24) {
     daylight_span <- sunrise.set(location$lat, location$lng, date = Sys.Date() %>% ymd(.,tz = "UTC")) #
+    source("helper_funcs.R") # refresh once per day
   }
   
   this_day <- interval(daylight_span$sunrise, daylight_span$sunset, tzone = "UTC")
