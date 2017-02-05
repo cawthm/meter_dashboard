@@ -39,10 +39,11 @@ meter_info_snapshot <- function(my_url, login, password, tz, meter_type) {
                  value = my_xml1 %>% xml_find_all(".//point") %>% xml_attr("value") %>% as.numeric()
     )
     
-    date_time_utc <- xml2::xml_find_first(my_xml1, ".//time") %>% xml_contents() %>% with_tz("UTC")
+    date_time_utc <- xml2::xml_find_first(my_xml1, ".//time") %>% xml_contents() %>% ymd_hms() %>% with_tz("UTC")
     inst_kw <- df %>% filter(field == "Power Instantaneous, total all phases") %>% .$value
     cum_kwh <- df %>% filter(field == "Energy Net") %>% .$value 
   }
+  
   if (meter_type == "laurita_obvius") {
     my_xml1 <- get_xml_block(my_url, login, password)
     date_time_utc <- my_xml1 %>% xml_find_all(".//font") %>% xml_find_all(".//span") %>% xml_contents() %>% as.character() %>% anytime(asUTC = T) %>% with_tz("UTC")
