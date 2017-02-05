@@ -30,7 +30,7 @@ while(year(Sys.Date()) <= 2017) { # everything in UTC
       meter_info_snapshot(.creds$url, login = .creds$login, password = .creds$pass, tz = location$tz, meter_type = .creds$type) %>% 
         write_csv(.,"data/aina1_meter.csv", append = TRUE)
     )
-    Sys.sleep(2)
+    Sys.sleep(15)
   }
   
 }
