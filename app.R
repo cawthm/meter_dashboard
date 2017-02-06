@@ -52,9 +52,9 @@ ui <- dashboardPage(header, sideBar, body)
 
 ### The "Run once section"
 
-infile_lau <- "./data/laurita_data.csv"
-infile_siel <- "./data/johnston_siel_data.csv"
-infile_gro <- "./data/johnston_growatt_data.csv"
+infile_lau <- "data/laurita_obvius.csv"
+infile_siel <- "data/johnston_siel_obvius.csv"
+infile_gro <- "data/johnston_growatt_obvius.csv"
 
 ###
 
@@ -65,20 +65,19 @@ server <- function(input, output, session) {
 #### Laurita calculations ####
   # some static calcs that don't need to be updated so often useful constants
   static_data <- read_csv(infile_lau)
-  static_data <- static_data %>% mutate(date_time_est = fastPOSIXct(date_time_utc, tz = "America/New_York")) 
   
 ## Future Michael: the following code will be difficult to reason about
 # what you're doing:
-# having added 'date_time_est' to static date above, 
+# having added 'date_time_utc' to static date above, 
 # you are then filtering on the last entry on the previous day
 # by taking only values where the day == ceiling date of two days ago
 # aka "yesterday"  
 # ie test 'ceiling_date(Sys.time() - days(2), unit = "day")
-  start_day_cum_kwh <- static_data %>% filter(day(date_time_est) == day(ceiling_date(Sys.time() - days(2), unit = "day"))) %>% select(cum_kwh) %>% summarise(last(cum_kwh)) %>% as.numeric()
+  start_day_cum_kwh <- static_data %>% filter(day(date_time_utc) == day(ceiling_date(Sys.time() - days(2), unit = "day"))) %>% select(cum_kwh) %>% summarise(last(cum_kwh)) %>% as.numeric()
   
-  start_month_cum_kwh <- static_data %>% filter(date_time_est >= floor_date(Sys.time(), unit = "month")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
+  start_month_cum_kwh <- static_data %>% filter(date_time_utc >= floor_date(Sys.time(), unit = "month")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
   
-  start_year_cum_kwh <- static_data %>% filter(date_time_est >= floor_date(Sys.time(), unit = "year")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
+  start_year_cum_kwh <- static_data %>% filter(date_time_utc >= floor_date(Sys.time(), unit = "year")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
   
   # reactive calcs that will update often
   fileReaderData <- reactiveFileReader(
@@ -92,10 +91,10 @@ server <- function(input, output, session) {
     fileReaderData() %>% filter(date_time_utc == max(date_time_utc)) %>% select(cum_kwh) %>% tail(1) %>% as.numeric() })
 
     last_kw_time <- reactive({
-    fileReaderData() %>% filter(date_time_utc == max(date_time_utc)) %>% mutate(date_time_est = fastPOSIXct(date_time_utc), tz = "America/New_York") %>% tail(1) %>% select(date_time_est)})
+    fileReaderData() %>% filter(date_time_utc == max(date_time_utc)) %>% select(date_time_utc)})
     
     last_kw <- reactive({
-      fileReaderData() %>% filter(date_time_utc == max(date_time_utc)) %>% mutate(date_time_est = fastPOSIXct(date_time_utc), tz = "America/New_York") %>% select(kw) %>% tail(1) %>% as.numeric() })
+      fileReaderData() %>% filter(date_time_utc == max(date_time_utc)) %>% select(inst_kw) %>% tail(1) %>% as.numeric() })
 
 ### End Laurita Calcs ###
     
@@ -112,20 +111,20 @@ server <- function(input, output, session) {
   
   
   output$gauge_live <- renderC3Gauge({
-    x <- fileReaderData() %>% do(tail(., 1)) %>% select(kw) %>% as.numeric()
+    x <- fileReaderData() %>% do(tail(., 1)) %>% select(inst_kw) %>% as.numeric()
     C3Gauge(sprintf("%1.0f", x/255 * 100))
   })
   
   #last 15 minutes
   output$plot_15_mins <- renderPlot({
-    set <- fileReaderData() %>% filter(date_time_est >= Sys.time() - minutes(200))
-    ggplot(set) + geom_step(aes(x = date_time_est, y = kw), color = 'darkblue', alpha = .75) + theme_minimal()
+    set <- fileReaderData() %>% filter(date_time_utc >= Sys.time() - minutes(200))
+    ggplot(set) + geom_step(aes(x = date_time_utc, y = inst_kw), color = 'darkblue', alpha = .75) + theme_minimal()
   })
   
   # Today
   output$plot_today <- renderPlot({
-  set <- fileReaderData() %>% filter(date_time_est >= floor_date(Sys.time(), unit = "day"))
-  ggplot(set) + geom_step(aes(x = date_time_est, y = kw), color = 'darkblue', alpha = .75) + theme_minimal()
+  set <- fileReaderData() %>% filter(date_time_utc >= floor_date(Sys.time(), unit = "day"))
+  ggplot(set) + geom_step(aes(x = date_time_utc, y = inst_kw), color = 'darkblue', alpha = .75) + theme_minimal()
   })
   
   output$money_today <- renderInfoBox({
@@ -160,18 +159,18 @@ server <- function(input, output, session) {
   static_data_siel <- read_csv(infile_siel)
   static_data_gro <- read_csv(infile_gro)
 
-  static_data_siel <- static_data_siel %>% mutate(date_time_est = fastPOSIXct(date_time_utc, tz = "America/New_York")) 
+  static_data_siel <- static_data_siel 
     
-  static_data_gro <- static_data_gro %>% mutate(date_time_est = fastPOSIXct(date_time_utc, tz = "America/New_York")) 
+  static_data_gro <- static_data_gro
   
-  start_day_cum_kwh_john <- static_data_siel %>% filter(day(date_time_est) == day(ceiling_date(Sys.time() - days(2), unit = "day"))) %>% select(cum_kwh) %>% summarise(last(cum_kwh)) %>% as.numeric() +
-                        static_data_gro %>% filter(day(date_time_est) == day(ceiling_date(Sys.time() - days(2), unit = "day"))) %>% select(cum_kwh) %>% summarise(last(cum_kwh)) %>% as.numeric()
+  start_day_cum_kwh_john <- static_data_siel %>% filter(day(date_time_utc) == day(ceiling_date(Sys.time() - days(2), unit = "day"))) %>% select(cum_kwh) %>% summarise(last(cum_kwh)) %>% as.numeric() +
+                        static_data_gro %>% filter(day(date_time_utc) == day(ceiling_date(Sys.time() - days(2), unit = "day"))) %>% select(cum_kwh) %>% summarise(last(cum_kwh)) %>% as.numeric()
   
-  start_month_cum_kwh_john <- static_data_siel %>% filter(date_time_est >= floor_date(Sys.time(), unit = "month")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric() + 
-                              static_data_gro %>% filter(date_time_est >= floor_date(Sys.time(), unit = "month")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
+  start_month_cum_kwh_john <- static_data_siel %>% filter(date_time_utc >= floor_date(Sys.time(), unit = "month")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric() + 
+                              static_data_gro %>% filter(date_time_utc >= floor_date(Sys.time(), unit = "month")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
   
-  start_year_cum_kwh_john <- static_data_siel %>% filter(date_time_est >= floor_date(Sys.time(), unit = "year")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric() + 
-    static_data_gro %>% filter(date_time_est >= floor_date(Sys.time(), unit = "year")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
+  start_year_cum_kwh_john <- static_data_siel %>% filter(date_time_utc >= floor_date(Sys.time(), unit = "year")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric() + 
+    static_data_gro %>% filter(date_time_utc >= floor_date(Sys.time(), unit = "year")) %>% select(cum_kwh) %>% summarise(first(cum_kwh)) %>% as.numeric()
   
   # reactive calcs that will update often
   fileReaderData_siel <- reactiveFileReader(
@@ -194,8 +193,8 @@ server <- function(input, output, session) {
       })
   
   last_kw_john <- reactive({
-    fileReaderData_siel() %>% filter(date_time_utc == max(date_time_utc)) %>% mutate(date_time_est = fastPOSIXct(date_time_utc), tz = "America/New_York") %>% select(kw) %>% tail(1) %>% as.numeric() +
-      fileReaderData_gro() %>% filter(date_time_utc == max(date_time_utc)) %>% mutate(date_time_est = fastPOSIXct(date_time_utc), tz = "America/New_York") %>% select(kw) %>% tail(1) %>% as.numeric() })
+    fileReaderData_siel() %>% filter(date_time_utc == max(date_time_utc)) %>% mutate(date_time_utc = fastPOSIXct(date_time_utc), tz = "America/New_York") %>% select(inst_kw) %>% tail(1) %>% as.numeric() +
+      fileReaderData_gro() %>% filter(date_time_utc == max(date_time_utc)) %>% mutate(date_time_utc = fastPOSIXct(date_time_utc), tz = "America/New_York") %>% select(inst_kw) %>% tail(1) %>% as.numeric() })
   
   ### End Johnston Calcs ###
   ###live
@@ -209,21 +208,21 @@ server <- function(input, output, session) {
   
   
   output$gauge_live_john <- renderC3Gauge({
-    x <- fileReaderData_siel() %>% do(tail(., 1)) %>% select(kw) %>% as.numeric() +
-      fileReaderData_gro() %>% do(tail(., 1)) %>% select(kw) %>% as.numeric()
+    x <- fileReaderData_siel() %>% do(tail(., 1)) %>% select(inst_kw) %>% as.numeric() +
+      fileReaderData_gro() %>% do(tail(., 1)) %>% select(inst_kw) %>% as.numeric()
     C3Gauge(sprintf("%1.0f", x/170.4 * 100))
   })
   
   #last 15 minutes
   output$plot_15_mins <- renderPlot({
-    set <- fileReaderData() %>% filter(date_time_est >= Sys.time() - minutes(200))
-    ggplot(set) + geom_step(aes(x = date_time_est, y = kw), color = 'darkblue', alpha = .75) + theme_minimal()
+    set <- fileReaderData() %>% filter(date_time_utc >= Sys.time() - minutes(200))
+    ggplot(set) + geom_step(aes(x = date_time_utc, y = inst_kw), color = 'darkblue', alpha = .75) + theme_minimal()
   })
   
   # Today
   output$plot_today <- renderPlot({
-    set <- fileReaderData() %>% filter(date_time_est >= floor_date(Sys.time(), unit = "day"))
-    ggplot(set) + geom_step(aes(x = date_time_est, y = kw), color = 'darkblue', alpha = .75) + theme_minimal()
+    set <- fileReaderData() %>% filter(date_time_utc >= floor_date(Sys.time(), unit = "day"))
+    ggplot(set) + geom_step(aes(x = date_time_utc, y = inst_kw), color = 'darkblue', alpha = .75) + theme_minimal()
   })
   
   output$money_today_john <- renderInfoBox({

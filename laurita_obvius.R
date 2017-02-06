@@ -24,10 +24,9 @@ while(year(Sys.Date()) <= 2017) { # everything in UTC
   right_now <- Sys.time() %>% with_tz("UTC")
   
   while( right_now %within% this_day ) {
-    try(
-      meter_info_snapshot(.creds$url, login = .creds$login, password = .creds$pass, tz = location$tz, meter_type = .creds$type) %>% 
-        write_csv(.,"data/laurita_obvius.csv", append = TRUE)
-    )
+    try( {
+      meter_info_snapshot(.creds$url, login = .creds$login, password = .creds$pass, tz = location$tz, meter_type = .creds$type) %>% write_csv(.,"data/laurita_obvius.csv", append = TRUE)
+    } )
     Sys.sleep(15)
   }
   

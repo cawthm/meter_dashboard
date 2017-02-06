@@ -11,10 +11,10 @@ anytime::addFormats("%A,%B %d %Y %H:%M:%S")
 
 # takes a single url and returns a block of xml
 get_xml_block <- function(my_url, login, password) {
-  url_response <- RETRY("GET",my_url, times = 30, pause_base = 10, pause_cap = 6000, authenticate(login, password))
+  url_response <- RETRY("GET",my_url, times = 100, pause_base = 10, pause_cap = 3600, authenticate(login, password))
   if (http_error(url_response) == FALSE) {
     content(url_response, "parsed", encoding = "UTF-8")
-  }
+  } 
 }
 
 # new function.  take a url + login/pwd credentials, return df
