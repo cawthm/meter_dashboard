@@ -17,7 +17,7 @@ while(year(Sys.Date()) <= 2017) { # everything in UTC
   daylight_span <- sunrise.set(location$lat, location$lng, date = ymd("2016-01-01", tz = "UTC")) #
   
   if (abs(difftime(Sys.time() %>% with_tz("UTC"), daylight_span$sunset ,tz = location$tz ,units = "hours")) >= 24) {
-    daylight_span <- sunrise.set(location$lat, location$lng, date = Sys.Date() %>% with_tz("UTC")) #
+    daylight_span <- sunrise.set(location$lat, location$lng, date = as.character((Sys.Date() %>% with_tz("UTC")))) #
     source("helper_funcs.R") # refresh once per day
   }
   
@@ -31,7 +31,7 @@ while(year(Sys.Date()) <= 2017) { # everything in UTC
 
     )
     
-    write_csv(x, "data/arcola_meter.csv", append = TRUE)
+    write_csv(x, paste0("data/",location$creds_name,".csv"), append = TRUE)
     
     Sys.sleep(15)
     
