@@ -138,3 +138,6 @@ meter_info_snapshot <- function(my_url, login, password, tz, meter_type) {
 # aina_obs_per_day <- aina1 %>% group_by(date) %>% summarise(n = n()) %>% arrange(desc(n))
 # 
 # all_days <- left_join(all_days, aina_obs_per_day)
+
+
+
