@@ -26,7 +26,6 @@ while(year(Sys.Date()) <= 2017) { # everything in UTC
   
   while(right_now %within% this_day) {
     try(
-
       x <- meter_info_snapshot(.creds$url, login = .creds$login, password = .creds$pass, tz = location$tz, meter_type = .creds$type),
       silent = TRUE
 
