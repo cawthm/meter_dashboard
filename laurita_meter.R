@@ -36,4 +36,8 @@ while(year(Sys.Date()) <= 2017) { # everything in UTC
     
     right_now <- Sys.time() %>% with_tz("UTC")
   }
+
 }
+
+  
+
