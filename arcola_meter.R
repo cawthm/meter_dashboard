@@ -39,5 +39,3 @@ while(year(Sys.Date()) <= 2017) { # everything in UTC
   }
   
 }
-
-
