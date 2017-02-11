@@ -38,5 +38,6 @@ while(year(Sys.Date()) <= 2017) { # everything in UTC
     
     right_now <- Sys.time() %>% with_tz("UTC")
   }
+  Sys.sleep(60) # go to sleep for two minutes in the outer loop; basically, waiting for the sun to come up
 
 }
