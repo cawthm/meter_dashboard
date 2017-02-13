@@ -27,11 +27,9 @@ while(year(Sys.Date()) <= 2017) { # everything in UTC
     try(
       x <- meter_info_snapshot(.creds$url, login = .creds$login, password = .creds$pass, tz = location$tz, meter_type = .creds$type),
       silent = TRUE
-      
-    )
-    try(
-    write_csv(x, paste0("data/",location$creds_name,".csv"), append = TRUE)
-    )
+      )
+    
+    try( write_csv(x, paste0("data/",location$creds_name,".csv"), append = TRUE))
     
     Sys.sleep(15)
     

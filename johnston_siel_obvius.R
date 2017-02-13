@@ -30,7 +30,7 @@ while(year(Sys.Date()) <= 2017) { # everything in UTC
       silent = TRUE
     )
     
-    write_csv(x, paste0("data/",location$creds_name,".csv"), append = TRUE)
+    try( write_csv(x, paste0("data/",location$creds_name,".csv"), append = TRUE) )
     
     Sys.sleep(15)
     

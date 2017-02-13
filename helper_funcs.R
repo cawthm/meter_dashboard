@@ -11,10 +11,12 @@ anytime::addFormats("%A,%B %d %Y %H:%M:%S")
 
 # takes a single url and returns a block of xml
 get_xml_block <- function(my_url, login, password) {
-  url_response <- RETRY("GET",my_url, times = 100, pause_base = 10, pause_cap = 3600, authenticate(login, password))
-  if (http_error(url_response) == FALSE) {
+  try(response <- RETRY("GET",my_url, times = 100, pause_base = 10, pause_cap = 3600, authenticate(login, password)))
+  try (
+    if (http_error(url_response) == FALSE) {
     content(url_response, "parsed", encoding = "UTF-8")
-  } 
+    } 
+  )
 }
 
 # new function.  take a url + login/pwd credentials, return df
@@ -138,6 +140,7 @@ meter_info_snapshot <- function(my_url, login, password, tz, meter_type) {
 # aina_obs_per_day <- aina1 %>% group_by(date) %>% summarise(n = n()) %>% arrange(desc(n))
 # 
 # all_days <- left_join(all_days, aina_obs_per_day)
+
 
 
 
